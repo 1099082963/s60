@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home\User;
+use App\Model\Userinformation;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserLoginRequest;
@@ -87,6 +88,9 @@ class UserController extends Controller
                 $result->status = 0;
                 $result->message = '注册成功';
                 $result->toJson();
+                $data=homeUser::where('phone',$user->phone)->get();
+                $id=$data[0]->id;
+                Userinformation::insert(['uid'=>$id]);
                 return redirect('home/user/login');
             } else {
                 $result->status = 1;
@@ -108,7 +112,9 @@ class UserController extends Controller
         $flag=Auth::attempt(['phone' => $request->input('phone'), 'password' =>$request->input('password') ]);
 //        dd($flag);
         if($flag){
-            return redirect('home/index')->with('errors', ['登录成功']);
+            session(['phone'=>$request->input('phone')]);
+//                dd(session('phone'));
+            return redirect('home/index');
         }else{
             return redirect('home/user/login');
         }

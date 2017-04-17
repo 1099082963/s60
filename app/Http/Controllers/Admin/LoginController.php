@@ -11,6 +11,7 @@ class LoginController extends Controller
 {
     public function Login(){
         return view('admin.login');
+
     }
     public function LoginIn(Request $request){
         //验证信息

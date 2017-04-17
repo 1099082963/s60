@@ -51,6 +51,7 @@
 }
 .bd ul{
     text-align: center;
+    margin-left: -15px;
 }
 .book-card-pack{
     /*display:none;*/
@@ -130,6 +131,7 @@
     height: 245px;
     width: 513px;
 }
+.org-books{margin-left: -91px;}
 #tabContent .book {
     width: 90px;
     height: 150px;

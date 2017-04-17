@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
     <title>@yield('title', '后台首页')</title>
+    <script src="/js/jquery-1.8.3.min.js"></script>
     <style>
         body {
             padding-top: 70px;
@@ -42,16 +43,29 @@
                 <a class="navbar-brand" href="#">百度阅读-后台管理系统</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    {{--@foreach($nav as $v)--}}
-                        {{--<li><a href="{{url($v['url'])}}">{{$v['name']}}</a></li>--}}
-                    {{--@endforeach--}}
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li><a href="">{{session('name')}}</a></li>
+                    <li><a href="{{url('admin/logout')}}">注销</a></li>
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <h1>@yield('model-title', '后台首页')</h1>
-    @yield('content')
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav navbar-nav">
+                @foreach($nav as $v)
+                    <li><a href="{{url($v['url'])}}">{{$v['name']}}</a></li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <h1>@yield('model-title', '后台首页')</h1>
+
+
+            @yield('content')
+        </div>
+    </div>
 </div>
 </body>
 </html>

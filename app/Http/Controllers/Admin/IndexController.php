@@ -10,6 +10,14 @@ class IndexController extends Controller
     public function Index()
     {
 
-        return view('admin.index');
+        return view('admin.Index');
+    }
+
+
+    //后台注销
+    public function LogOut()
+    {
+
+        return view('admin.Login');
     }
 }

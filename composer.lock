@@ -4,6 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+
+    "content-hash": "76036da3b5b55b91dbe1e1affa01bf9e",
     "content-hash": "2cac7a9f0efaf67b2517b3f633be3086",
     "packages": [
         {
@@ -161,6 +163,7 @@
             "time": "2015-11-06T14:35:42+00:00"
         },
         {
+
             "name": "guzzlehttp/psr7",
             "version": "1.4.2",
             "source": {
@@ -288,6 +291,7 @@
             "time": "2017-02-04T10:37:19+00:00"
         },
         {
+
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -644,6 +648,7 @@
             "time": "2017-03-22T15:43:14+00:00"
         },
         {
+
             "name": "mews/captcha",
             "version": "v2.1.4",
             "source": {
@@ -701,6 +706,7 @@
             "time": "2016-07-19T09:01:51+00:00"
         },
         {
+
             "name": "monolog/monolog",
             "version": "1.22.1",
             "source": {
@@ -975,6 +981,7 @@
             "time": "2017-03-13T16:27:32+00:00"
         },
         {
+
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {

@@ -1,0 +1,24 @@
+
+ .maxImg{
+     width:100%;
+ }
+.yueduRz{
+    background-color: #F9F8F4;
+}
+.base{
+    margin-left:150px;
+}
+h4{
+    padding-top:30px;
+    border-bottom:1px solid #008000;
+}
+#exampleInputEmail1{
+    display:inline-block;
+    width:400px;
+}
+textarea{
+    vertical-align: top;
+}
+.error{
+    color:red;
+}

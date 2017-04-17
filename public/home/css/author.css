@@ -1,0 +1,237 @@
+h1,h2,h3,h4,h5{
+    margin:0;
+    padding:0;
+}
+.img{
+    position: relative;
+}
+.apply-wrap{
+    position: absolute;
+    left:50%;
+    top: 55px;
+    width: 270px;
+    height: 290px;
+    padding: 30px 0;
+    margin-left: 330px;
+    background: rgba(255,255,255,.8);
+    zoom: 1;
+    z-index: 2;
+    text-align: center;
+}
+.title-wrap{
+    width: 226px;
+    margin: 0 auto;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.apply-slogan{
+    overflow: hidden;
+    margin: 0 auto;
+    text-indent: -9999px;
+    width: 215px;
+    height: 19px;
+    background: url(/home/img/author/5.png) no-repeat 0 0;
+}
+.num-item {
+    display: inline-block;
+    width: 23px;
+    height: 30px;
+    vertical-align: middle;
+    position: relative;
+    background: rgba(255,255,255,.8);
+    zoom: 1;
+    border: 1px solid #d6d6d6;
+    border-radius: 2px;
+}
+.num-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 30px;
+    background-image: url(/home/img/author/4.png);
+
+}
+.ui-bz-btn-p-40{
+    display: block;
+    font-size: 20px;
+    height: 44px;
+    line-height: 44px;
+    background-color: #a77656;
+    color: #fff;
+}
+.ui-bz-btn{
+    width:200px;
+    border: 0;
+    border-radius: 2px;
+    background: #fd8a23;
+    display: inline-block;
+    cursor: pointer;
+}
+.center{
+    margin:0 auto;
+    width:1200px;
+    height:525px;
+    background-color:#fff;
+}
+.hd{
+    margin-top:50px;
+    width:880px;
+    float:left;
+}
+.mod-title{
+    width: 100%;
+    height: 45px;
+    overflow: hidden;
+    border-bottom: 1px solid #EAEAEA;
+}
+.hh2{
+    margin: 0;padding: 0; font-size:26px;width: 105px;height:45px;border-bottom: 2px solid #9A5B32;
+}
+.center-right{
+    margin-top: 50px;
+    width:280px;
+    height:470px;
+    margin-left: 40px;
+    float:left;
+}
+.new{
+    width:280px;
+    height:45px;
+}
+.newdo{
+    line-height: 45px;
+    border-bottom: 1px solid #EAEAEA;
+}
+.block{
+    margin-top:20px;
+    width:880px;
+    height:379px;
+}
+.author-item{
+    width:260px;
+    height:146px;
+}
+.top{
+    height:60px;
+    width:100%;
+}
+.top-left{
+    width:60px;
+    height:60px;
+    float: left;
+}
+.xiaoao{
+    margin-left:10px;
+    line-height: 30px;
+}
+.lal{
+    margin-left:40px;
+    text-align: center;
+    line-height: 30px;
+    width:74px;
+    height:30px;
+    background-color: #F8F8F8;
+    border: 1px solid #B4B4B4;
+}
+.duzhe{
+    margin-left:70px;
+    font-size: 10px;
+}
+.bottom{
+    width:260px;
+    height:70px;
+    background-color: #FAFAFA;
+    border:1px solid #EAEAEA;
+    margin-top: 15px;
+}
+.bottom p{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.zhiye{
+    margin-top: 12px;
+}
+#pin{
+    width:280px;
+    height:428px;
+    padding:30px 20px;
+    background-color: #FAFAFA;
+    border: 1px solid #EAEAEA;
+    overflow: hidden;
+}
+#lun{
+    width:100%;
+    height:41px;
+    margin-bottom: 25px;
+}
+.xiat{
+    width:40px;
+    height:40px;
+    float: left;
+}
+.wen{
+    width:183px;
+    height:40px;
+    font-size: 12px;
+    float: left;
+}
+.wen p{
+    margin-left: 10px;
+}
+.ax-area-wrap{
+    width:1200px;
+    margin:20px auto;
+}
+.author-rank-wrap{
+    width:1216px;
+    height:550px;
+    margin:20px auto;
+}
+.mod-title{
+    width:1216px;
+    height:45px;
+}
+.rank-item-wrap{
+    width:389px;
+    height:431px;
+    border:1px solid #EAEAEA;
+    margin-top: 20px;
+    float: left;
+    margin-right: 16px;
+}
+.hhdd{
+    width:387px;
+    height:57px;
+    background-color: #FAFAFA;
+    font-size:20px;
+    line-height: 57px;
+    text-align: center;
+    border:1px solid #EAEAEA;
+}
+.xkk{
+    width:387px;
+    height:372px;
+    padding:30px 23px;
+}
+.first{
+    width:342px;
+    height:40px;
+    margin-bottom: 25px;
+}
+.media{
+    width: 75px;
+    height:40px;
+    margin-right: 15px;
+    float: left;
+}
+.content{
+    width:250px;
+    height:40px;
+    border-bottom:1px solid #EAEAEA;
+    float: left;
+    line-height: 40px;
+}
+.zpp{
+    float: right;
+}

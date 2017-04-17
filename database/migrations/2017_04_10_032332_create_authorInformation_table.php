@@ -15,10 +15,9 @@ class CreateAuthorInformationTable extends Migration
     {
         Schema::create('authorInformation',function(Blueprint $table){
             $table->increments('id');
-            $table->string('aid');
             $table->string('sex');
             $table->string('age');
-            $table->string('phone');
+            $table->char('phone',11);
             $table->string('email');
             $table->string('birthday');
             $table->string('resume');
