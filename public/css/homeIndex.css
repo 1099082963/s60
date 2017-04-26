@@ -1,0 +1,161 @@
+.media{
+    float:left;
+    width: 400px;
+    height: 285px;
+    background-color: green;
+}
+.lb-zong{
+    margin-top:15px;
+}
+.lb-left,.lb-right{
+    line-height:295px;
+}
+.lb{
+    float:left;
+}
+.type span{
+    font-size:18px;
+}
+.type{
+    margin-top:20px;
+}
+.type-ul li{
+    margin-right:23px;
+}
+.type-div-hidden ul li{
+    margin-right:20px;
+}
+.more{
+    margin-top: -5px
+}
+.other-link-wrap{
+    text-align: center;
+    margin-top:50px;
+}
+.other-link-item{
+    margin:25px;
+}
+.yd-reco-wrap{
+    background-color: #F6F5EE;
+    margin-top:50px;
+    text-align: center;
+}
+.more-books{
+    float:right;
+}
+.book-card span{
+    overflow: hidden;
+}
+
+.bd ul{
+    text-align: center;
+    margin-left: -15px;
+}
+.book-card-pack{
+    /*display:none;*/
+    width: 157px;
+}
+.bd .book{
+    width: 157px;
+    height:270px;
+    float:left;
+    margin-right:20px;
+}
+.book{
+    width: 157px;
+    height:270px;
+    float:left;
+}
+#org-tab{
+    overflow: hidden;
+
+}
+#org-tab .hd {
+    width: 510px;
+    display: inline-block;
+}
+#org-tab .tabControl {
+    width: 500px;
+    height: 235px;
+}
+#org-tab .tabControl li {
+    display: inline-block;
+    width: 153px;
+    height: 84px;
+    background-color: #fff;
+    padding: 2px 1px 1px 2px;
+    text-align: center;
+}
+.disabled{
+    border: 1px solid #e4e3e1;
+}
+#org-tab .tabControl li img{
+    width: 110px;
+    height: 40px;
+    margin-top:20px;
+}
+.hover{
+    border:1px solid green;
+}
+.hidden{
+    display:none;
+}
+.hover-current{
+    display:block;
+
+}
+.hover-current img{
+    width: 85px;
+    height: 112px;
+}
+.org-books, .org-title{
+    float:left;
+}
+#org-tab .bd {
+    display: inline-block;
+    width: 513px;
+    height: 252px;
+    background: #fff;
+    vertical-align: top;
+    border: 1px solid #e4e3e1;
+    border-left: 0;
+    overflow: hidden;
+}
+#tabContent{
+    height: 245px;
+    width: 513px;
+}
+#tabContent .org-books{
+    height: 245px;
+    width: 513px;
+}
+.org-books{margin-left: -91px;}
+#tabContent .book {
+    width: 90px;
+    height: 150px;
+    float: left;
+}
+.org-title{
+    line-height:50px;
+}
+.yd-reco-wrap .bd .book-cover img{ margin-top:0px; border-radius: 15px;margin-top:25px;width:100px;height:150px;position: absolute;margin-left:-50px}
+
+.book-cover{width:150px;height:200px;position:relative}
+.book-card{
+    display:none;
+    width: 150px;
+    height: 200px;
+
+    border-radius: 15px;
+    background: #c0c0c0;
+    opacity: 0.5;
+
+    position: absolute;
+    margin-bottom: 0px;
+}
+.book-card a{ margin-top:10px;color:black;font-size: 15px}
+.book-card a:hover{ color:#888a85;font-weight: bold;}
+.book-card{
+    line-height: 20px;
+}
+

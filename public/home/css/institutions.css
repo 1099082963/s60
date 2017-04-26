@@ -1,0 +1,79 @@
+h1,h2,h3,h4,h5{
+    margin:0;
+    padding:0;
+}
+.img{
+    position: relative;
+    margin-left: -600px;
+}
+.apply-wrap{
+    position: absolute;
+    left:-18%;
+
+    top: 117px;
+
+    width: 370px;
+    height: 350px;
+    padding: 30px 0;
+    margin-left: 330px;
+    background: rgba(255,255,255,.8);
+    zoom: 1;
+    z-index: 2;
+    text-align: center;
+}
+.title-wrap{
+    width: 226px;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+.apply-slogan{
+    overflow: hidden;
+    margin: 0 auto;
+    text-indent: -9999px;
+    width: 250px;
+    height: 15px;
+    background:url(/home/img/img/line_87a816d.png)  no-repeat 0 0;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+.num-item {
+    display: inline-block;
+    width: 23px;
+    height: 30px;
+    vertical-align: middle;
+    position: relative;
+    background: rgba(255,255,255,.8);
+    zoom: 1;
+    border: 1px solid #d6d6d6;
+    border-radius: 2px;
+}
+.num-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 30px;
+}
+.ui-bz-btn-p-40{
+    display: block;
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    background-color: red;
+    color: #fff;
+}
+.ui-bz-btn{
+    width:300px;
+    border: 0;
+    border-radius: 2px;
+    background: #fd8a23;
+    display: inline-block;
+    cursor: pointer;
+}
+.personal-num{
+    text-align: left;
+    margin-left: 35px;
+}
+.big-big{
+    font-size: 20px;
+}

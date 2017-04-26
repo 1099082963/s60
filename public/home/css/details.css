@@ -1,0 +1,160 @@
+#db-big{width: 1100px;
+
+    height: 2000px;
+
+    margin: 20px auto;}
+.db-left{width: 760px;
+    height:306px;
+    float: left;}
+.db-right{
+    width:300px;
+    height:1000px;
+    float: left;
+    margin-left: 40px;}
+.db-left-top img{
+    float: left;}
+.db-left-top-right{
+    width:530px;
+    height:280px;
+    float: left;
+    margin-left: 25px;
+}
+.sss{
+    font-size: 12px;
+    color: #808080;
+}
+.dzz{
+    height:17px;
+    width:48px;
+    border-radius:30%;
+    text-align: center;
+    font-size: 12px;
+    color: #808080;
+    border:1px solid #a4aaae;}
+.cx{
+    width:530px;
+    height:30px;
+    line-height: 30px;
+    padding-left: 20px;
+    color: #F77A36;
+    background-color: #FFF0D3;}
+.jg{
+    width:530px;
+    height:41px;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-top: 17px;
+    font-size: 12px;
+    color: #808080;
+    background-color: #FFF6E5;
+}
+.moy{
+    color:#F77A36;
+    font-size: 25px;
+
+}
+
+.bta{
+    width:530px;
+    height:74px;
+    padding:15px 20px;
+    background-color: #FFF6E5;
+}
+.btn{
+
+    /*width:100px;*/
+
+    height:45px;
+}
+.db-left-main{
+    height:800px;
+    clear:left;}
+.db-left-load li{margin-left: 20px}
+.controduct{height:115px;}
+.box-controduct{width:240px;height:114px;float:left;}
+
+.select-item-border{
+    width:95px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+}
+.select-item-border:hover{color: #58BD5A;border-bottom:2px solid #58BD5A;}
+.neirong{
+    height:120px;
+    margin-top: 10px;}
+.booksbooks{
+    border-left:4px solid #58BD5A;padding-left: 5px;}
+.desc{text-indent: 2em;}
+.info{
+    height:170px;}
+.info ul li{
+    width:400px;
+    height:37px;
+    line-height: 37px;border-bottom: 1px solid #F5F2EB;
+    border-top: 1px solid #F5F2EB;
+    margin-left: -40px;}
+.uuulll li{
+    width:400px;
+    height:37px;
+    margin-left: -40px;
+    line-height: 23px;
+
+    border-bottom: 1px solid #F5F2EB;}
+
+.sspp{
+    border-left:4px solid #58BD5A;
+    height:20px;margin-top: 8px;}
+.aside{
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 5px solid #58BD5A;
+    margin-left: -14px;}
+.asidea{
+    width:300px;
+    height:500px;
+    padding:0 14px;
+    border: 1px solid #DEDBD5;
+    margin-top: 10px;
+}
+.asidea-one{
+    height:35px;
+    padding:7px 0;
+}
+.asidea-one-main{
+    height:83px;
+    display: none;
+
+}
+
+.asidea-one:hover .leishen{display: none;zoom: 1;}
+.asidea-one:hover .asidea-one-main{display: block;zoom: 1;}
+.asidea-one:hover{height:50px;}
+
+.paiming{
+    width:20px;
+    height:20px;
+    background-color: #F77A36;
+    color: #fff;text-align: center;}
+.app{margin-top: 7px;
+    width: 150px;
+    height:18px;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #B2B2C1;}
+.ddda{
+
+    color: black;}
+/*收藏下载分享*/
+
+.iconfont{
+    font-family: ziti;
+}
+.db-left-load-ul{
+    font-size:30px;
+}
+
+.booksinfo{
+    margin-bottom: 20px;
+}
+
