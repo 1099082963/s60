@@ -1,0 +1,94 @@
+.iconfont{
+    font-family: ziti;
+}
+span{
+    display:inline-block;
+}
+a{
+    color:black;
+    text-decoration: none;
+}
+li{
+    list-style: none;
+    float:left;
+}
+.menu-group{
+    border-bottom:1px solid green;
+}
+.menu{
+    font-size:18px;
+    margin-right:20px;
+    color:black;
+}
+.menu:hover{
+    color:green;
+}
+.bookshelf{
+    font-size:20px;
+    color:#999;
+    margin-left:200px;
+}
+
+.footer-top{
+    height: 150px;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+}
+.footer-top1{
+    width: 100px;
+    height: 100px;
+    margin-right:150px;
+}
+.footer-top1:hover{
+    color:green;
+}
+.footer-top2{
+    width: 80px;
+    display:block;
+    height: 80px;
+    font-size:60px;
+    color:green;
+}
+.footer-bottom{
+    text-align: center;
+    margin-bottom:50px;
+}
+.footer-bottom3{
+    margin-top:30px;
+}
+.footer-bottom4{
+<<<<<<< HEAD
+    width: 265px;
+=======
+<<<<<<< HEAD
+    width: 300px;
+=======
+    width: 265px;
+>>>>>>> master
+>>>>>>> master
+    float:left;
+}
+.footer-bottom5{
+    display:block;
+    color:#666;
+}
+.footer-bottom5:hover{
+    color:#ccc;
+    text-decoration: none;
+}
+.footer-bottom6{
+    text-align: center;
+    font-size:10px;
+}
+.Bidu,.xieyi,.qiye,.guanggao,.shangye{
+    color:#2D64B3;
+}
+.footer-contact-feedback{
+    text-decoration: underline;
+<<<<<<< HEAD
+}
+
+=======
+
+}
+>>>>>>> master

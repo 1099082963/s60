@@ -1,0 +1,89 @@
+.kePublic{
+    margin: 20px auto;
+    width: 1175px;
+    height: 1000px;  }
+.vertical-nav{
+    width: 200px;
+    margin:0;
+    padding:0;
+    float: left;
+    font-family: Segoe UI, Arial;
+    position:relative;
+    list-style: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    background: #F8F8F8;}
+.vertical-nav li{
+    display: block;
+    width: 100%;
+    padding:0;
+    float:left;
+    font-size:14px;
+    position:relative;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;}
+.vertical-nav li a{
+    width: 100%;
+    display:block;
+    padding:15px 20px 15px 19px;
+    color: #888;
+    text-decoration:none;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;}
+.vertical-nav li a:hover{color:red;}
+.vertical-nav ul, .vertical-nav ul li ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width:100%;
+    background: #F8F8F8;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);}
+.vertical-nav ul{top: 0;left: 100%;}
+#sdgagdgd10002 tbody{
+    color: #aaa;}
+#sdgagdgd10002 tbody td{
+    background: #f5f5f5;
+    border: 1px solid #fff;
+    text-align: center;
+    padding:8px;}
+#sdgagdgd10002 tbody td:hover{
+    background: #F8F8F8;}
+
+.clear{
+    width: 925px;
+    height:925px;
+    margin-left: 250px;}
+.clear-top{
+    height:35px;
+}
+.clear-button{
+    background-color: #F5F5F2;
+    height:32px;
+    line-height: 32px;
+    border: 1px solid #EDEDED;
+}
+.clear-button span{
+    width:85px;
+    text-align: center;
+    border-right:1px solid #EDEDED;}
+.db{
+    height: 800px;
+    margin-top: 20px;
+}
+.books{
+    width:156px;
+    height:269px;
+    text-align: center;
+    float: left;
+    margin-right: 30px;
+}
+.books img{margin-top: 10px;}
+.books:hover{background-color: #F5F5F2}
