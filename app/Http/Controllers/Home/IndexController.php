@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Home;
 use App\Model\advertisement;
 use App\Model\Books;
 use App\Model\carousel;
+
+use App\Model\Classify;
+
 use App\Model\homeUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,8 +37,27 @@ class IndexController extends Controller
         $url = $request->path();
         $carousel = carousel::where('carouselName', $url)->get();
         $advert =advertisement::where(['advertName'=>$url,'display'=>1])->get();
-        return view('home.index')->with('name',$name)->with('carousel',$carousel)->with('advert',$advert);
+
+
+        $onecategroy=Classify::where(['pid'=>0,'display'=>1])->get();
+        $twocategroy=Classify::where('pid','>',0)->where('display','=',1)->get();
+//        dd($twocategroy);
+
+        $books=Books::where(['hot'=>1,'up'=>1])->get();
+        $author=Books::join('authorinformation','books.author_id','authorinformation.id')->get();
+//        dd($author);
+        return view('home.index')->with('name',$name)
+                                ->with('carousel',$carousel)
+                                ->with('advert',$advert)
+                                ->with('onecategroy',$onecategroy)
+                                ->with('twocategroy',$twocategroy)
+                                ->with('books',$books)
+                                ->with('ahthor',$author);
+
+
+
     }
+
 
     public function seach(Request $request)
     {

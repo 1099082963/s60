@@ -51,12 +51,15 @@ class ClassifyController extends Controller
 
     }
     //第二级导航
-    public function secondLevel($id)
+    public function secondLevel(Request $request,$id)
     {
+        $url = $request->path();
+        $advert =advertisement::where(['advertName'=>$url,'display'=>1])->get();
+
         $data = Classify::where('pid','=',0)->get();
         $ddat = Classify::where('pid','=',$id)->get();
         $result = Books::all();
-        return view('home.classify')->with('ddat',$ddat)->with('data',$data)->with('result',$result);
+        return view('home.classify')->with('ddat',$ddat)->with('data',$data)->with('advert',$advert)->with('result',$result);
     }
     //进入二级
     public function second($id)
@@ -71,43 +74,67 @@ class ClassifyController extends Controller
     //图书详情
     public function readBooks($id)
     {
-//        dd(1);
+
+
         $user = homeUser::where('phone', session('phone'))->get();
 //            dd($user);
-        if (!empty($user[0]->name)) {
+        if (!empty($user[0])){
             $name = $user[0]->name;
         } else {
             $name = '文库新人';
         }
+
+
+
+
+        $comment = homeUser::join('comment','user.id','comment.uid')->where('book_id',$id)->paginate(3);
+        $page = homeUser::join('comment','comment.uid','user.id')->where('book_id',$id)->get();
+        $coun=count($page);
+        //回复评论
+        $arr=comment::join('replay','comment.id','replay.comment_id')
+            ->join('user','comment.uid','user.id')
+            ->get();
+//        dd($arr);
+
+
+
+
         if (session('phone')) {
-            //------------------------hewei开始-----------------------------------
-            $user = Reader::where('phone', session('phone'))->get()[0];
-//            dd($user->id);
+
             //收藏
-            $havecollect = collectBooks::where(['uid' => $user->id, 'bid' => $id])->get()->toArray();
+            $havecollect = collectBooks::where(['uid' => $user[0]->id, 'bid' => $id])->get()->toArray();
             if ($havecollect) {
                 $status = $havecollect[0]['status'];
-//                dd(1111);
             } else {
                 $status = 0;
-//                dd($status);
             }
 
-            //记录表
+
+            //书籍，传过去用于遍历小说的信息
+            $books = Books::where('id', $id)->get()[0];
+            //书籍
+            $data = Books::find($id);
+            //当前用户
+            $user = Reader::where('phone', session('phone'))->get()[0];
+            $uid=$user->id;
+            //评论点赞
+            $perfect = perfect::where('book_id',$id)
+                ->where('zan_uid',$uid)
+                ->get()->toArray();
+            //热销书
+            $hotbooks = Books::where('hot', 1)->get();
+            //浏览记录表
             $newcollers = recordbooks::where('uid', $user->id)->get()->toArray();
             $collers = recordbooks::where(['uid' => $user->id, 'bid' => $id])->get()->toArray();
             $havecount = count($collers);
-
-            $books = Books::where('id', $id)->get()[0];
-//            dd($newcollers);
             $newcollcount = count($newcollers);
             //如果没有这本书的记录就添加,有就不添加这本书的记录了
+            if ($newcollcount > 8) {
+                $oldcollers = recordbooks::where('uid', $user->id)->orderby('addtime', 'asc')->first();
+                $oldcollers->delete();
+            }
             if ($havecount == 0) {
                 //只能存入8条记录
-                if ($newcollcount > 8) {
-                    $oldcollers = recordbooks::where('uid', $user->id)->orderby('addtime', 'asc')->first();
-                    $oldcollers->delete();
-                }
                 $addcoller = new recordbooks();
                 $addcoller->uid = $user->id;
                 $addcoller->bid = $id;
@@ -117,23 +144,19 @@ class ClassifyController extends Controller
                 $addcoller->author_name = $books->author_name;
                 $addcoller->save();
             }
-            $data = Books::find($id);
-            $comment = homeUser::join('comment','user.id','comment.uid')->where('book_id',$id)->paginate(3);
-            $page = homeUser::join('comment','comment.uid','user.id')->where('book_id',$id)->get();
-            $coun=count($page);
 
-            $arr=comment::join('replay','comment.id','replay.comment_id')
-                ->join('user','comment.uid','user.id')
-                ->get();
-            if(session('phone')){
-                $user=homeUser::where('phone',session('phone'))->get();
-                $uid = $user[0]->id;
-                $perfect = perfect::where('book_id',$id)
-                    ->where('zan_uid',$uid)
-                    ->get()->toArray();
-//        dd($perfect);
-                if(!$perfect){
-//                dd($perfect);
+
+            //小说卷和章节遍历
+            $bookrolls = BookRolls::where('bid', $id)->get();
+            //如果有卷
+            if (count($bookrolls->toArray()) > 0) {
+                //遍历章节
+                foreach ($bookrolls as $v) {
+                    $bookchapters[] = BookChapters::where('rid', $v->id)->get()->toArray();
+                }
+                //        dd($bookchapters);//章节按照卷分
+                //有章节没有评论回复时
+                if (  (count($bookchapters) > 0  && !$perfect) ) {
                     return view('home.classify.details')
                         ->with('name',$name)
                         ->with('data',$data)
@@ -143,44 +166,160 @@ class ClassifyController extends Controller
                         ->with('newcollers', $newcollers)
                         ->with('arr',$arr)
                         ->with('perfect',$perfect)
-                        ->with('status', $status)->with('do', 1);
-                }else{
+                        ->with('status', $status)
+                        ->with('i', 1)
+                        ->with('j', 1)
+                        ->with('bookrolls', $bookrolls)
+                        ->with('bookchapters', $bookchapters)
+                        ->with('hotbooks', $hotbooks)
+                        ->with('do', 1);
+                } else if(count($bookchapters) > 0){
+                    //有章节有回复评论时
                     $perfect = perfect::where('book_id',$id)
                         ->where('zan_uid',$uid)
                         ->get();
                     return view('home.classify.details')
-                        ->with('data', $data)
+                         ->with('name',$name)
+                         ->with('data',$data)
+                         ->with('comment',$comment)
+                         ->with('coun',$coun)
+                         ->with('book_id',$id)
+                         ->with('newcollers', $newcollers)
+                         ->with('arr',$arr)
+                         ->with('perfect',$perfect)
+                         ->with('status', $status)
+                         ->with('i', 1)
+                         ->with('j', 1)
+                         ->with('bookrolls', $bookrolls)
+                         ->with('bookchapters', $bookchapters)
+                         ->with('hotbooks', $hotbooks)
+                         ->with('do', 1);
+                }else if(count($bookchapters) == 0){
+                    //没有章节有回复评论时
+                    $perfect = perfect::where('book_id',$id)
+                        ->where('zan_uid',$uid)
+                        ->get();
+                    return view('home.classify.details')
+                        ->with('name',$name)
+                        ->with('data',$data)
                         ->with('comment',$comment)
-                        ->with('book_id',$id)
                         ->with('coun',$coun)
-                        ->with('name', $name)
-                        ->with('arr',$arr)
+                        ->with('book_id',$id)
                         ->with('newcollers', $newcollers)
+                        ->with('arr',$arr)
                         ->with('perfect',$perfect)
-                    ->with('status', $status)->with('do', 1);
+                        ->with('status', $status)
+                        ->with('i', 1)
+                        ->with('j', 1)
+                        ->with('bookrolls', $bookrolls)
+                        ->with('hotbooks', $hotbooks)
+                        ->with('do', 1);
+                }else if( count($bookchapters) == 0 && !prefect){
+                    //没有章节没有回复评论时
+                    return view('home.classify.details')
+                        ->with('name',$name)
+                        ->with('data',$data)
+                        ->with('comment',$comment)
+                        ->with('coun',$coun)
+                        ->with('book_id',$id)
+                        ->with('newcollers', $newcollers)
+                        ->with('arr',$arr)
+                        ->with('perfect',$perfect)
+                        ->with('status', $status)
+                        ->with('i', 1)
+                        ->with('j', 1)
+                        ->with('bookrolls', $bookrolls)
+                        ->with('hotbooks', $hotbooks)
+                        ->with('do', 1);
                 }
 
+            }else{
+                //没有卷
+                return view('home.classify.details')
+                    ->with('name',$name)
+                    ->with('data',$data)
+                    ->with('comment',$comment)
+                    ->with('coun',$coun)
+                    ->with('book_id',$id)
+                    ->with('newcollers', $newcollers)
+                    ->with('arr',$arr)
+                    ->with('perfect',$perfect)
+                    ->with('status', $status)
+                    ->with('i', 1)
+                    ->with('j', 1)
+                    ->with('bookrolls', $bookrolls)
+                    ->with('hotbooks', $hotbooks)
+                    ->with('do', 1);
             }
 
-            return view('home.classify.details')
-                ->with('data', $data)
-                ->with('comment',$comment)
-                ->with('book_id',$id)
-                ->with('name', $name)
-                ->with('arr',$arr)
-                ->with('newcollers', $newcollers)
-                ->with('status', $status)->with('do', 1);
-
-
         } else {
+            //没有登陆的时候
+            $name = '文库新人';
+            //热销书
+            $hotbooks = Books::where('hot', 1)->get();
 
+            //书籍
             $data = Books::find($id);
-            return view('home.classify.details')->with('data', $data)->with('name', $name)->with('do', 0);
+            $bookrolls = BookRolls::where('bid', $id)->get();
+            if (count($bookrolls->toArray()) > 0) {
+                //有卷
+                foreach ($bookrolls as $v) {
+                    $bookchapters[] = BookChapters::where('rid', $v->id)->get()->toArray();
+                }
+                //有章节
+                if (  (count($bookchapters) > 0) ) {
+                    return view('home.classify.details')
+                        ->with('name',$name)
+                        ->with('data',$data)
+                        ->with('comment',$comment)
+                        ->with('coun',$coun)
+                        ->with('book_id',$id)
+                        ->with('arr',$arr)
+                        ->with('status', 0)
+                        ->with('i', 1)
+                        ->with('j', 1)
+                        ->with('bookrolls', $bookrolls)
+                        ->with('bookchapters', $bookchapters)
+                        ->with('hotbooks', $hotbooks)
+                        ->with('do', 2);
+                } else {
+                    //没有章节
+                    return view('home.classify.details')
+                        ->with('name',$name)
+                        ->with('data',$data)
+                        ->with('comment',$comment)
+                        ->with('coun',$coun)
+                        ->with('book_id',$id)
+                        ->with('arr',$arr)
+                        ->with('status', 0)
+                        ->with('i', 1)
+                        ->with('j', 1)
+                        ->with('bookrolls', $bookrolls)
+                        ->with('hotbooks', $hotbooks)
+                        ->with('do', 2);
+                }
+            }else{
+                //没有卷
+                return view('home.classify.details')
+                    ->with('name',$name)
+                    ->with('data',$data)
+                    ->with('comment',$comment)
+                    ->with('coun',$coun)
+                    ->with('book_id',$id)
+                    ->with('arr',$arr)
+                    ->with('status', 0)
+                    ->with('i', 1)
+                    ->with('j', 1)
+                    ->with('bookrolls', $bookrolls)
+                    ->with('hotbooks', $hotbooks)
+                    ->with('do', 2);
+            }
+
         }
+
+        //未登录判断结束
+
     }
-
-        //-----------------hewei结束---------------------------------
-
 
     //评论
     public function bookcomment(Request $request,$book_id){

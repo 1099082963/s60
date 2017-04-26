@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function Login(){
-        return view('admin.login');
+        return view('admin.Login');
 
     }
     public function LoginIn(Request $request){

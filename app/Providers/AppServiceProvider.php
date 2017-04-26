@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
             array('url'=>'admin/advert','name'=>'广告管理'),
             array('url'=>'admin/feedback','name'=>'反馈建议'),
             array('url'=>'admin/order','name'=>'订单管理'),
+
         );
         view()->composer('layoute.AdminMaster',function($view) use($nav){
             $view->with('nav',$nav);

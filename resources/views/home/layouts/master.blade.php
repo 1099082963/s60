@@ -174,7 +174,9 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a href=""><img src="/home/img/timg.jpg" width="40" height="40" style="margin-top: 3px;"></a>
+
+                <a href="{{asset(url('home/index'))}}"><img src="/home/img/timg.jpg" width="40" height="40" style="margin-top: 3px;"></a>
+
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left" action="{{asset(url('home/seach'))}}" method="post">

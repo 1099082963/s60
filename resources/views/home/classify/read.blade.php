@@ -93,7 +93,12 @@
                                         },
                                         datatype:'text'
                                     })
+
+
+
                                 })
+                                $('#chapters').trigger('click');
+
                             })
                     </script>
                 </div>

@@ -70,6 +70,7 @@ class MoneyController extends Controller
     public function core(){
         $user=homeUser::where('phone',session('phone'))->get();
         $id = $user[0]->id;
+
         $list =DB::select("select sum(`money`) as 'all' from core where uid=".$id);
         $money = $list[0]->all;
         $core =DB::select("select sum(`core`) as 'all' from core where uid=".$id);
@@ -83,6 +84,7 @@ class MoneyController extends Controller
             ->with('dismoney',$dismoney)
             ->with('discore',$discore)
             ->with('getcore',$getcore);
+
     }
 
 

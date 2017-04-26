@@ -36,7 +36,8 @@ class UserinfoController extends Controller
             $name='文库新人';
         }
 
-        $data=$userinfo[0];
+       $data=$userinfo[0];
+
         return view('home.center.myinformation.user')->with('data',$data)->with('name',$name)->with('icon',$icon);
     }
     public function infoupdate(){

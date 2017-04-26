@@ -24,10 +24,12 @@
 
 @foreach($books as $b)
     <div style="float:left;margin-right:20px;">
+
         <a href=""><img src="{{url($b[0]['icon'])}}" width="150px" height="200px" alt=""></a>
         <div>
             <a href="">{{$b[0]['booksName']}}</a>
             用户id
+
             <span  id="cancel" value="{{$b[0]['id']}}">取消收藏 <input type="hidden" value="{{$b[0]['id']}}"> </span>
 
         </div>

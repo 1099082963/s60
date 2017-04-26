@@ -9,11 +9,10 @@
 
     <div class="container lb-zong" style="position: relative;">
 
-        <div class="media">
-            <div class="top-number-unit free-num-wrap">
-                <p class="num" data-num="31,192"><span class="num0 d0" data-num="3" style="background-position: -2px -90px;"></span><span class="num0 d1" data-num="1" style="background-position: -2px -30px;"></span><span class="num0 d0" data-num="1" style="background-position: -2px -30px;"></span><span class="num0 d1" data-num="9" style="background-position: -2px -270px;"></span><span class="num0 d2" data-num="2" style="background-position: -2px -60px;"></span></p>
-            </div>
-            <a href="/promotion/activity/nafreelist?fr=book_index#topBanner" target="_blank" class="apply-btn"></a>
+
+        <div class="media" >
+            <img src="{{url('home/img/gg.jpg')}}" width="400px" height="285px">
+
         </div>
 
         <div class="lb">
@@ -61,15 +60,11 @@
     <div class="container type">
         <span><b>分类</b></span>
         <ul class="type-ul">
-            <li><a href="" class="btn btn-default" target="_blank">成功学</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">投资理财</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">人际处事</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">计算机</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">人物传记</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">言情小说</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">散文随笔</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">悬疑推理</a></li>
-            <li><a href="" class="btn btn-default" target="_blank">市场营销</a></li>
+
+            @foreach($onecategroy as $one)
+            <li><a href="{{asset(url('home/category'))}}" class="btn btn-default" target="_blank">{{$one->name}}</a></li>
+            @endforeach
+
         </ul>
         <a class="btn more"  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             更多
@@ -77,15 +72,11 @@
         <div class="collapse" id="collapseExample">
             <div class="type-div-hidden">
                 <ul class="type-ul-hidden">
-                    <li><a href="" class="btn btn-default" target="_blank">健康养生</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">演讲口才</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">现当代小说</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">宗教哲学</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">企业管理</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">心理学</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">教育考试</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">历史小说</a></li>
-                    <li><a href="" class="btn btn-default" target="_blank">两性情感</a></li>
+
+                    @foreach($twocategroy as $two)
+                    <li><a href="{{asset(url('home/category/secend',$two->id))}}" class="btn btn-default" target="_blank">{{$two->name}}</a></li>
+                    @endforeach
+
                 </ul>
             </div>
         </div>
@@ -106,7 +97,9 @@
     <div class="mod yd-reco">
         <div class="container-fluid yd-reco-wrap js-toolbar-hook ">
             <div class="hd">
-                <a class="more-books" href="" target="_blank">
+
+                <a class="more-books" href="{{asset(url('home/category'))}}" target="_blank">
+
                     更多&nbsp;&gt;
                 </a>
                 <h3 class="mod-title">热门推荐</h3>
@@ -114,24 +107,19 @@
 
             <div class="bd container">
                 <ul>
-                    <li class="book" data-track="0,0">
-                        <div class="book-cover">
-                            <b class="ic-book-wrap"><b class="ic-book ic-book-0"></b></b>
-                            <b class="book-cover-shadow"></b>
-                            <img class="hot-book-img" src="/home/img/1e30e924b899a901516799f314950a7b0308f5a1.jpg" alt="">
-                            <div class="book-card">
-                                <div class="book-card-pack">
-                                    <a href="/ebook/93cea605abea998fcc22bcd126fff705cc175c6b?fr=index" target="_blank" class="book-card-wrap">
-                                        <span class="book-card-title">热播剧《大唐荣耀》原著：大...</span>
-                                        <p class="book-card-author">沧溟水</p>
-                                        <span class="book-card-btn">去看看</span>
-                                    </a>
-                                </div>
+
+                    @foreach($books as $book)
+                        <li class="book" data-track="0,0">
+                            <div class="book-cover">
+                                <b class="ic-book-wrap"><b class="ic-book ic-book-0"></b></b>
+                                <b class="book-cover-shadow"></b>
+                                <a href="{{asset(url('home/readBooks',$book->id))}}"><img class="hot-book-img" src="{{url($book->icon)}}" alt=""></a>
                             </div>
-                        </div>
-                        <a class="book-title" href="" target="_blank" title="热播剧《大唐荣耀》原著：大唐后妃传：珍珠传奇Ⅰ">热播剧《大唐荣耀》原著：大唐后妃传...</a>
-                        <p class="book-price">￥4.89</p>
-                    </li>
+                            <a class="book-title" href="" target="_blank" title="{{$book->booksName}}">{{$book->booksName}}</a>
+                            <p class="book-price">&yen;{{$book->price}}</p>
+                        </li>
+                    @endforeach
+
                 </ul>
             </div>
         </div>
@@ -508,29 +496,5 @@
             $(this).css({opacity:1}).next().hide('slow');
         });
     </script>
-    {{--返回顶部开始--}}
-    {{--<div id="side-bar" style="right: 64.5px; display: block;" class="">--}}
-        {{--<div class="btn-wrap mb5">--}}
-            {{--<a href="###" class="side-bar-item gotop"><span class="ic"></span></a>--}}
-            {{--<a href="###" class="side-bar-item weixin">--}}
-                {{--<span class="ic"></span>--}}
-                {{--<span class="text-tip">关注<br>微信</span>--}}
-                {{--<span class="tooltips-box side-bar-qr-wp" style="display: none;">--}}
-                {{--<span class="abox"><span class="a1"></span><span class="a2"></span></span>--}}
-                {{--<span class="side-bar-qr"></span>--}}
-                {{--<span class="side-bar-qr-txt">扫描二维码，快速分享到微信朋友圈</span>--}}
-                {{--</span>--}}
-            {{--</a>--}}
-            {{--<a href="http://weibo.com/readbaidu" class="side-bar-item weibo" target="_blank"><span class="ic"></span><span class="text-tip">关注<br>微博</span></a>--}}
-        {{--</div>--}}
-        {{--<div class="btn-wrap">--}}
-            {{--<a href="http://tieba.baidu.com/p/4471901647?share=9105&amp;fr=share" class="side-bar-item fankui log-xsend" data-logxsend="[2, 200206]" target="_blank"><span class="ic">意见反馈</span><span class="text-tip">意见反馈</span></a>--}}
-        {{--</div>--}}
-        {{--<div class="feedback-remind">--}}
-            {{--<a href="###" class="feedback-remind-close"></a>--}}
-            {{--<div class="feedback-remind-content"></div>--}}
-            {{--<a href="http://tieba.baidu.com/p/4471901647?share=9105&amp;fr=share" target="_blank" class="feedback-remind-link  log-xsend" data-logxsend="[2, 200206]"></a>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--返回顶部结束--}}
+
 @endsection

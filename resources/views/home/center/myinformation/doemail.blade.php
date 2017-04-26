@@ -23,15 +23,6 @@
                         @endif</p>
                 </div>
 
-                {{--<div id="boxcode" style="display: none">--}}
-                {{--<div class="form-group">--}}
-                {{--<label for="exampleInputPassword1">验证码</label>--}}
-                {{--<input style="width:200px;display:inline-block;" type="text" class="form-control" name="verify">--}}
-                {{--<a href="http://mail.163.com/">去邮箱</a>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-
-
 
                 <div id="box-button">
 
@@ -58,7 +49,8 @@
             if($btn.innerHTML=='解除绑定'){
                 $btn.innerHTML='请在下面修改';
                 $input.removeAttribute('readonly');
-//                $code.style.display='block';
+
+
                 $button.innerHTML='<button type="submit" class="btn btn-primary">绑定</button>';
                 $back.innerHTML='';
             }
@@ -66,5 +58,7 @@
         }
 
     </script>
-@endsection
+
+    @endsection
+
 @endsection

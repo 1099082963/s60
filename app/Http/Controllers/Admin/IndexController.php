@@ -15,9 +15,9 @@ class IndexController extends Controller
 
 
     //后台注销
-    public function LogOut()
+    public function LogOut(Request $request)
     {
-
+       $request->session('name')->flush();
         return redirect('admin/login');
     }
 }

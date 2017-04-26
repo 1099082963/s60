@@ -60,7 +60,10 @@ class AuthorController extends Controller
                     } else if ($status == 1) {
                         return view('home/author/wait');
                     } else if ($status == 2) {
-                        $data = level::where('author_id',$uid)->get();
+
+                        $data = level::where('author_id',$author[0]['id'])->get();
+//                        dd($data);
+
                         if(count($data->toArray())>0){
                             $level = $data[0]->level;
 //                            dd($level);
@@ -172,6 +175,35 @@ class AuthorController extends Controller
         $books->registime=$request->input('registime');
         $books->icon = $request->file('icon')->move('image/createbooks',md5(time().uniqid()).'.jpg');
         if($books->save()){
+
+                $uid = Reader::where('phone',session('phone'))->get()[0]->id;
+                $author_id = author::where('uid',$uid)->get()[0]->id;
+                $count = Books::where('author_id',$author_id)->count();
+                if ($count<=5){
+                    $level = '小说新秀';
+                }elseif($count >= 5 && $count < 10 ){
+                    $level = '白银作家';
+                }elseif($count >=10 && $count <15){
+                    $level = '白金作家';
+                }elseif($count >=15 && $count <20){
+                    $level = '大神';
+                }
+                $data = array([
+                    'author_id'=>$author_id,
+                    'books_count'=>$count,
+                    'level'=>$level,
+                ]);
+                $le=level::where('author_id',$author_id)->get();
+
+                if(count($le->toArray())>0){
+                    $le[0]->books_count=$count;
+                    $le[0]->author_id=$author_id;
+                    $le[0]->level=$level;
+                    $le[0]->save();
+
+                }else{
+                    level::insert($data);
+                }
 
             return redirect('home/author/books');
         }
@@ -398,6 +430,7 @@ class AuthorController extends Controller
             ]);
             level::insert($data);
             return redirect('home/author/books');
+
     }
 
 

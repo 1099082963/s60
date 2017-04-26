@@ -82,7 +82,12 @@
 .select-item-border:hover{color: #58BD5A;border-bottom:2px solid #58BD5A;}
 .neirong{
     height:120px;
+<<<<<<< HEAD
     margin-top: 10px;}
+=======
+    margin: 10px 0;
+}
+>>>>>>> master
 .booksbooks{
     border-left:4px solid #58BD5A;padding-left: 5px;}
 .desc{text-indent: 2em;}
@@ -129,7 +134,11 @@
 
 .asidea-one:hover .leishen{display: none;zoom: 1;}
 .asidea-one:hover .asidea-one-main{display: block;zoom: 1;}
+<<<<<<< HEAD
 .asidea-one:hover{height:50px;}
+=======
+.asidea-one:hover{height:100px;}
+>>>>>>> master
 
 .paiming{
     width:20px;

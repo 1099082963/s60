@@ -10,7 +10,9 @@
                 <span style="margin-left: 20px;">
                     <a href="{{asset(url('home/readBooks',$v->id))}}"><p>{{$v->booksName}}</p></a>
                     <p>作者:{{$v->author_name}}</p>
-                    <p>介绍:{{$v->desc}}</p>
+
+                    <p>介绍: <textarea name="" id="" cols="50" rows="2" style="resize:none;vertical-align: top;border: none;"> {{$v->desc}}</textarea></p>
+
                     <p>价格:￥ {{$v->price}}</p>
                 </span>
             </div>

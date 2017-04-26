@@ -19,7 +19,7 @@ class AuthorController extends Controller
         $url = $request->path();
         $carousel = carousel::where('carouselName', $url)->get();
         $advert =advertisement::where(['advertName'=>$url,'display'=>1])->get();
-        if (session('phone') ==null){
+       if (session('phone') ==null){
             $data = author::all();
             return view('home.Author')->with('data',$data);
         }

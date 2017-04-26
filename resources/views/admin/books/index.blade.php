@@ -22,7 +22,9 @@
                 <th>Do</th>
             </tr>
            @forelse($data as $v)
-               <tr>
+
+               <tr id="">
+
                    <td>{{$v->id}}</td>
                    <td>{{$v->name}}</td>
                    <td>{{$v->pid}}</td>
@@ -35,43 +37,6 @@
                        <button class="btn btn-danger">删除</button>
                    </td>
                </tr>
-                <script>
-                    $(function(){
-                        $('.btn').click(function() {
-                            switch ($(this).html()) {
-                                //请求一个string响应
-                                case '添加子分类':
-                                    $.ajax({
-                                        url: '{{url("admin/booksadd/{$v->id}/{$v->path}")}}',
-                                        type: 'get',
-                                        success: function (data) {
-                                            $('#mmaa').empty().append(data);
-                                        }
-                                    })
-                                    break;
-                                case '修改':
-                                    $.ajax({
-                                        url: '{{url("admin/books/booksEdit/{$v->id}")}}',
-                                        type: 'get',
-                                        success: function (data) {
-                                            $('#mmaa').empty().append(data);
-                                        }
-                                    })
-                                    break;
-
-                            }
-                        })
-                        $('.bbtn').click(function() {
-                              $.ajax({
-                                  url: '{{url("admin/booksadd")}}',
-                                  type: 'get',
-                                  success: function (data) {
-                                       $('#mmaa').empty().append(data);
-                                  }
-                              })
-                        })
-                    })
-                </script>
 
                @empty
             <p>暂无数据!!!</p>
@@ -79,5 +44,49 @@
         </table>
         {{$data->links()}}
     </div>
+
+
+    <script>
+        $(function(){
+            $('.btn').click(function() {
+                switch ($(this).html()) {
+                    //请求一个string响应
+                    case '添加子分类':
+                        var id =$(this).parent().parent().children().first().text();
+                        var path = $(this).parent().parent().children().eq(3).text();
+                        $.ajax({
+                            data:{'id':id,'path':path},
+                            url: '{{url("admin/booksadd/add")}}',
+                            type: 'get',
+                            success: function (data) {
+                                $('#mmaa').empty().append(data);
+                            }
+                        })
+                        break;
+                    case '修改':
+                        var id =$(this).parent().parent().children().first().text();
+                        $.ajax({
+                            data:{'id':id},
+                            url: '{{url("admin/books/booksEdit/edit")}}',
+                            type: 'get',
+                            success: function (data) {
+                                $('#mmaa').empty().append(data);
+                            }
+                        })
+                        break;
+
+                }
+            })
+            $('.bbtn').click(function() {
+                $.ajax({
+                    url: '{{url("admin/booksadd")}}',
+                    type: 'get',
+                    success: function (data) {
+                        $('#mmaa').empty().append(data);
+                    }
+                })
+            })
+        })
+    </script>
 
 @endsection

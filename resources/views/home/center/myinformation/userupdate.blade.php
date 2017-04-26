@@ -10,6 +10,7 @@
 @section('username',$name)
 @section('mmin')
 
+
     <div class="panel-body">
         <form role="form" action="" method="post" enctype="multipart/form-data">
             <div class="col-md-6">

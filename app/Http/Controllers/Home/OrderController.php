@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+
 use App\Model\Books;
 use App\Model\cart;
 use App\Model\core;
@@ -11,9 +12,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
+
 class OrderController extends Controller
 {
     //
+
     public function index()
     {
         return view('home.center.myOrder.index');
@@ -59,11 +62,14 @@ class OrderController extends Controller
 //        return $id;
         $user=homeUser::where('phone',session('phone'))->get();
         $uid = $user[0]->id;
-        $list =order::where('ispay',1)->where('uid',$uid)->get() ;
-//dd($list);
+        $book = order::find($id);
+        $book_id=$book->book_id;
+        $list =order::where('book_id',$book_id)->where('uid',$uid)->where('ispay',1)->get() ;
+//dd(count($list));
         if(count($list)==0) {
 
             $result = order::find($id);
+//            dd($result->ispay) ;
             if ($result->ispay == 0 && $result->cancel == 0) {
                 $user = homeUser::where('phone', session('phone'))->get();
                 $uid = $user[0]->id;
@@ -145,5 +151,6 @@ class OrderController extends Controller
 //        dd($book);
 
         return view('home.center.myBooks.ispaybook')->with('books',$book);
+
     }
 }

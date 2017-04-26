@@ -26,8 +26,9 @@ Route::group(['middleware'=>'check.log'],function(){
     Route::get('admin/books','Admin\BooksController@index')->middleware('rbac');
     Route::get('admin/books/subclass/{pid}','Admin\BooksController@subclass');
     Route::get('admin/books/{id}','Admin\BooksController@index');
-    Route::get('admin/booksadd/{id}/{path}','Admin\BooksController@cateAdd');
-    Route::get('admin/books/booksEdit/{id}','Admin\BooksController@cateEdit');
+
+    Route::get('admin/booksadd/add','Admin\BooksController@cateAdd');
+    Route::get('admin/books/booksEdit/edit','Admin\BooksController@cateEdit');
     Route::post('admin/books','Admin\BooksController@edit');
     Route::get('admin/booksadd','Admin\BooksController@add');
     Route::post('admin/books/add','Admin\BooksController@catedd');
@@ -134,9 +135,8 @@ Route::group(['middleware'=>'check.log'],function(){
     Route::get('admin/feedback/dete/{id}','Admin\FeedBackController@dete');
 
     //订单
-    Route::get('admin/order','Admin\FeedBackController@order');
-
-
+    Route::get('admin/order','Admin\OrderController@order')->middleware('rbac');
+    Route::get('admin/cancel/{id}','Admin\OrderController@cancel');
 });
 
 //登陆
@@ -196,13 +196,20 @@ Route::group(['middleware'=>'checkHome.log'],function() {
 
     //个人中心
     Route::get('home/user/center', 'Home\CenterController@index');
+
     Route::get('center/myBooks/my', 'Home\user\myBooksController@myAll');
+
+    Route::get('home/user/center/myBooks/my', 'Home\user\myBooksController@myAll');
+
     Route::get('home/user/center/myBooks/all', 'Home\user\myBooksController@All');
     Route::get('home/user/order', 'Home\user\orderController@index');
 
 
     //收藏
+
     Route::get('center/myBooks/collect', 'Home\user\myBooksController@collect');
+
+    Route::get('home/user/center/myBooks/collect', 'Home\user\myBooksController@collect');
     Route::get('home/user/center/myBooks/cancelCollect', 'Home\user\myBooksController@cancelCollect');
 
 
@@ -224,7 +231,10 @@ Route::group(['middleware'=>'checkHome.log'],function() {
     Route::post('home/user/center/Money/getmoney','Home\user\MoneyController@getmoney');
     Route::get('home/user/center/Money/history','Home\user\MoneyController@history');
     Route::get('home/user/center/Money/history/{id}','Home\user\MoneyController@dodelete');
+
     Route::get('center/Money/usermoney','Home\user\MoneyController@show');
+    Route::get('home/user/center/Money/usermoney','Home\user\MoneyController@show');
+
     Route::get('home/user/center/Money/core','Home\user\MoneyController@core');
 //
 
@@ -242,9 +252,6 @@ Route::group(['middleware'=>'checkHome.log'],function() {
     Route::get('home/user/sendSMS','Home\user\UserinfoController@sendSMS');
     Route::get('home/user/outphone','Home\user\UserinfoController@outphone');
     Route::post('home/user/outphone','Home\user\UserinfoController@dooutphone');
-
-//购物车
-    Route::get('home/buy','Home\OrderController@buy');
 
 
     //收藏需要防登录
@@ -292,6 +299,7 @@ Route::get('home/readBooks/{id}','Home\ClassifyController@readBooks');
 
 Route::post('home/readBooks/{id}','Home\ClassifyController@bookcomment');
 Route::post('/home/doin','Home\ClassifyController@replay');
+
 Route::post('home/perfect','Home\ClassifyController@perfect');
 //购买
 Route::get('home/center/order','Home\OrderController@index');
@@ -302,6 +310,7 @@ Route::get('center/myOrders/dobuy','Home\OrderController@dobuy');
 Route::post('order/pay','Home\OrderController@pay');
 Route::post('order/cancel','Home\OrderController@cancel');
 Route::get('center/ispay','Home\OrderController@ispay');
+Route::post('home/perfect','Home\ClassifyController@perfect');
 
 //详情中读小说
 Route::get('home/details/read/{id}','Home\ClassifyController@doread');

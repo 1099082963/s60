@@ -7,7 +7,9 @@ namespace App\Http\Controllers\Home;
 use App\Model\Books;
 use App\Model\collectBooks;
 use App\Model\homeUser;
+
 use App\Model\order;
+
 use App\Model\Userinformation;
 
 use Illuminate\Http\Request;
@@ -47,6 +49,7 @@ class CenterController extends Controller
                  return view('home.center.center')->with('name',$name)->with('icon',$icon)->with('books',$books)->with('count',$count);
          }else{
              return view('home.center.center')->with('name',$name)->with('icon',$icon)->with('count',$count);
+
 
         }
 

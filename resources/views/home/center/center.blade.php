@@ -15,21 +15,19 @@
         <div class="right-main-container" data-csrf_sign="2109984400">
             <div class="books-title-select">
                 <div class="books-part-btns" id="mmmm">
-                   <button class="button">全部(0)</button>
 
                     @if(count($count)==0)
                         <button class="button">已购买</button>(0)
                     @else
                         <button class="button">已购买</button>({{count($count)}})
                     @endif
+
                     @if(empty($books))
                         <button class="button">已收藏</button>(0)
                     @else
                         <button class="button">已收藏</button>({{count($books)}})
                     @endif
 
-                   <button class="button">会员免费(0)</button>
-                   <button class="button">套餐包(0)</button>
                 </div>
             </div>
             <div class="books-container" id="box">
@@ -59,6 +57,7 @@
                     case '已购买':
                         $.ajax({
                             url:'{{url('center/ispay')}}',
+
                             type:'get',
                             success:function(data){
                                 $('#box').empty().append(data);
@@ -69,14 +68,15 @@
 
                     case '已收藏':
                         $.ajax({
+
                             url:'{{url('center/myBooks/collect')}}',
+
                             type:'get',
                             success:function(data){
                                 $('#box').empty().append(data);
                             }
                         })
                         break;
-
 
 
                 }

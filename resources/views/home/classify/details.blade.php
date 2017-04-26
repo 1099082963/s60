@@ -30,7 +30,6 @@
                     <div class="jg">价格: <span class="moy">￥ {{$data->price}}</span> 原价:￥ 188（9.0折）</div>
                     <div class="bta">
 
-                        {{--<a href="{{url('home/buy')}}"></a>--}}
                         <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
                             购买全本
                         </button>
@@ -64,7 +63,8 @@
                             </div>
                         </div>
 
-                     <button class="btn btn-read"><a href="{{asset('home/details/read/'.$data->id)}}">开始阅读</a></button>
+                        <button class="btn btn-read"><a href="{{asset(url('home/details/read/'.$data->id))}}">开始阅读</a></button>
+
                     </div>
                 </div>
                 <div class="db-left-load clearfix">
@@ -146,7 +146,9 @@
                         <div class="hd select-title clearfix" style="border-bottom:1px solid #999;position: relative">
                             <a href="#book-controduce" class="select-ti"><span class="select-item-border">简介</span></a>
                             <a href="#book-number" class="select-ti"><span class="select-item-border">目录</span></a>
+
                             <a href="#book-comment" class="select-ti"><span class="select-item-border">评论&nbsp;<span style="color:#999;">({{$coun}})</span></span></a>
+
                         </div>
                     <div id="book-controduce">
                         <div class="neirong">
@@ -158,7 +160,9 @@
                             <p class="booksbooks">基本信息</p>
                             <ul>
                                 <li>作者:{{$data->author_name}}</li>
-                                <li>出版时间:</li>
+
+                                <li>出版时间:{{date('Y年m月d日',$data->registime+28800)}}</li>
+
                                 <li>出版社:{{$data->copyright}}</li>
                                 <li>价格:{{$data->price}}</li>
                                 <li>分类:{{$data->label}}</li>
@@ -169,24 +173,39 @@
 
                     <div id="book-number" class="clearfix">
                         <div class="hd select-title clearfix" style="border-bottom:1px solid #999">
-                            <p>目录 共({{$data->count}})章</p>
-                        </div>
 
-                            <ul class="uuulll">
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;1 </span></li></a>
-                                <a href=""><li><span class="sspp">&nbsp;查看全部</span></li></a>
+                            <p>目录</p>
+                        </div>
+                        @forelse($bookrolls as $r)
+                            <h3 class="">{!! $r->bookrollsname !!}</h3>
+                            <ul class="">
+                                @forelse($bookchapters as $c)
+                                    @foreach($c as $ch)
+                                        @if($r->id==$ch['rid'])
+                                            <a href="{{asset(url('home/details/read/'.$data->id))}}" class="chapters " style="cursor:pointer;">
+                                                {{$ch['chaptersname']}}
+                                            </a>
+                                        @endif
+
+                                    @endforeach
+                                @empty
+                                    <a class="">
+                                        当前没有章节及内容
+                                    </a>
+                                @endforelse
                             </ul>
+                        @empty
+                            <ul class="">暂无内容,敬请期待</ul>
+                        @endforelse
+
                     </div>
+
+
+
                     <div id="book-comment" style="margin-top:50px">
 
                         <div id="comment-look" >
+
                             <p class="booksbooks">评论({{$coun}})</p>
                             <br>
                             <table>
@@ -199,9 +218,11 @@
                                                 <img class="user-avatar" src="{{url($com->icon)}}" alt="">
                                             @endif
 
-                                            <span class="line"> {{$com->name}}：
+                                            <span class="line">
+                                                {{$com->name}}：
 
-                                           {{$com->create_time}}</span>
+                                           {{$com->create_time}}
+                                            </span>
                                                 @if(session('phone'))
                                                     @if(empty($perfect))
                                                         <button class="perfect">赞</button>
@@ -229,8 +250,11 @@
                                             @if(count($arr)>0)
                                             @foreach($arr as $item)
                                                 @if($item->comment_id==$com->id)
-                                                    <p>{{$item->name}} 回复:
-                                                    {{$item->replay_comment}}</p>
+                                                    <p>
+                                                        {{$item->name}}
+                                                        回复:
+                                                    {{$item->replay_comment}}
+                                                    </p>
 
                                                 @endif
                                             @endforeach
@@ -259,7 +283,9 @@
                                      </tr>
                                  @endforeach
 
-                            </table>{{$comment->links('Home.page')}}
+                            </table>
+                            {{$comment->links('Home.page')}}
+
                         </div>
                         <div id="comment" class="clearfix">
                             <hr>
@@ -268,7 +294,6 @@
                                 <a href="{{url('home/user/login')}}" style="color: red">去登录</a>
                             @else
                                 <div>
-                                    {{--{{url('home/readBooks/'.$book_id)}}--}}
                                     <form action="" method="post">
                                         {{csrf_field()}}
                                         <div class="comment-text">
@@ -284,9 +309,6 @@
                         </div>
                     </div>
 
-
-
-
                 </div>
             </div>
 
@@ -298,22 +320,30 @@
                 <div class="aside clearfix">
                     小说热门榜单
                 </div>
+
+                @foreach($hotbooks as $hot)
                 <div class="asidea-one clearfix">
                     <div class="leishen">
-                        <span class="paiming">1</span>&nbsp;&nbsp;&nbsp;
-                        <span>{{$data->booksName}}</span>
+                        <span class="paiming">
+                            {{$i++}}
+                        </span>&nbsp;&nbsp;&nbsp;
+                        <span>{{$hot->booksName}}</span>
                     </div>
                     <div class="asidea-one-main clearfix">
                         <div style="width:70px;float:left;">
-                            <a href=""><img src="{{url($data->icon)}}" width="70px" height="81px" alt=""></a>
+                            <a href="{{asset(url('home/readBooks',$hot->id))}}"><img src="{{url($hot->icon)}}" width="70px" height="81px" alt=""></a>
                         </div>
                         <div>
-                            <span class="app ddda">{{$data->booksName}}</span>
-                            <span class="app">{{$data->author_name}}</span>
+                            <span class="app ddda">{{$hot->booksName}}</span>
+                            <span class="app">{{$hot->author_name}}</span>
+
                             <span class="app">手机APP免费</span>
                         </div>
                     </div>
                 </div>
+
+                @endforeach
+
             </div>
 
             <div class="asidea clearfix">
@@ -321,19 +351,24 @@
                 <div class="aside">
                     小说热门榜单
                 </div>
+
+                @foreach($hotbooks as $hot)
                 <div class="asidea-one">
                     <div class="leishen">
-                        <span>1</span>
-                        <span>雷神</span>
+                        <span>{{$j++}}</span>
+                        <span>{{$hot->booksName}}</span>
+
                     </div>
                     <div class="asidea-one-main">
                     </div>
                 </div>
+
+                @endforeach
+
             </div>
 
+            <div class="asidea" style="overflow: hidden;">
 
-
-            <div class="asidea">
                 <div class="aside">
                     浏览历史
                 </div>
@@ -342,7 +377,9 @@
                         @foreach($newcollers as $v)
                             <div class="image">
                                 <div style="width:70px;float:left;">
-                                    <a href=""><img src="{{url($v['icon'])}}" width="70px" height="81px" alt=""></a>
+
+                                    <a href="{{asset(url('home/readBooks',$v['bid']))}}"><img src="{{url($v['icon'])}}" width="70px" height="81px" alt=""></a>
+
                                 </div>
                                 <div class="booksinfo">
                                     <span class="app ddda">{{$v['booksname']}}</span>
@@ -359,6 +396,7 @@
 
         </div>
     </div>
+
     <script>
         $(function(){
             $('.replay-comment').click(function () {
@@ -376,7 +414,6 @@
                     en.stopPropagation();
                 })
             })
-
 
 
             $('.append button').click(function(){
@@ -454,9 +491,11 @@
 
 
 
+
         })
 
 
     </script>
+
     @endsection
 

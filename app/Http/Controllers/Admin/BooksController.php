@@ -29,6 +29,7 @@ class BooksController extends Controller
     }
     public function cateAdd(Request $request)
     {
+
         return view('Admin.books.booksAdd')->with('id',$request->id)->with('path',$request->path);
     }
     public function cateEdit(Request $request)

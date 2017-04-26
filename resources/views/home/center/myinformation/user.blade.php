@@ -13,7 +13,9 @@
         .bs-example h3{ font-size:20px;}
         table{margin-left: 100px;}
     </style>
-@endsection
+
+    @endsection
+
 
 @section('username',$name)
 @section('mmin')
@@ -34,18 +36,22 @@
                 <br></tr>
             &nbsp;&nbsp;&nbsp;&nbsp;<tr>&nbsp;&nbsp;&nbsp;&nbsp;<h3>生日日期：{{$data->birthday==''?'无':$data->birthday}}</h3>
                 <br></tr>
+
             &nbsp;&nbsp;&nbsp;&nbsp;<tr>&nbsp;&nbsp;&nbsp;&nbsp;<h3>邮箱：@if($data->is_confirmed==0)
                         <a href="http://mail.163.com">去验证</a>
                     @else
                         {{$data->email==''?'无':$data->email}}
                     @endif</h3>
+
                 <br></tr>
             &nbsp;&nbsp;&nbsp;&nbsp;<tr>&nbsp;&nbsp;&nbsp;&nbsp;<h3>个性签名：{{$data->personal==''?'无':$data->personal}}</h3>
                 <br></tr>
         </table>
         <p><a class="btn btn-default" href="{{url('home/user/infoupdate')}}" role="button">修改信息</a>
             <a class="btn btn-default" href="{{url('home/user/center')}}" role="button">返回</a>
-            <a href="{{url('home/user/userpass')}}"><button class="btn btn-primary">修改密码</button></a></p><br>
+
+        <a href="{{url('home/user/userpass')}}"><button class="btn btn-primary">修改密码</button></a></p><br>
+
 
     </div>
 

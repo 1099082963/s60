@@ -151,6 +151,7 @@
         }
 
     </style>
+
 @yield('my-css')
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -162,7 +163,9 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a href=""><img src="/home/img/timg.jpg" width="40" height="40" style="margin-top: 3px;"></a>
+
+            <a href="{{asset(url('home/index'))}}"><img src="/home/img/timg.jpg" width="40" height="40" style="margin-top: 3px;"></a>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form class="navbar-form navbar-left">
@@ -248,10 +251,10 @@
                     </div>
                     <ul class="uc-nav">
 
-                        <li class="ggg" style="float: none;height: 61px;">我的图书</li>
-                        <li class="ggg" style="float: none;height: 61px;">我的订单</li>
-                        <li class="ggg" style="float: none;height: 61px;">账户&#20805;&#20540;</li>
-                        <li class="ggg" style="float:none;height: 61px;">我的关注</li>
+                        <li class="ggg" style="float: none;height: 61px;cursor: pointer;">我的图书</li>
+                        <li class="ggg" style="float: none;height: 61px;cursor: pointer;">我的订单</li>
+                        <li class="ggg" style="float: none;height: 61px;cursor: pointer;">账户&#20805;&#20540;</li>
+                        <li class="ggg" style="float:none;height: 61px;cursor: pointer;">我的关注</li>
                     </ul>
                     <div class="side-qr">
                             <img src="//wkstatic.bdimg.com/static/yduc/layout/read_uc_layout/images/qr_47df8c9.png" />
@@ -334,7 +337,9 @@
                 case '我的订单':
                     $(this).addClass('curr').siblings().removeClass('curr');
                     $.ajax({
+
                         url:'{{url('home/center/order')}}',
+
                         type:'get',
                         success:function(data){
                             $('#maina').empty().append(data);
